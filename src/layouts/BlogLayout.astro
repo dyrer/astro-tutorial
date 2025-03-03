@@ -6,6 +6,16 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title}>
 	<div class="max-w-3xl mx-auto px-4 py-12">
+		{frontmatter.image && (
+			<div class="mb-8 overflow-hidden rounded-xl shadow-lg">
+				<img 
+					src={frontmatter.image} 
+					alt={frontmatter.title} 
+					class="w-full h-64 md:h-96 object-cover"
+				/>
+			</div>
+		)}
+		
 		<div class="mb-8 pb-4 border-b border-secondary-200">
 			<h1 class="text-4xl font-bold text-dark-900 mb-2">{frontmatter.title}</h1>
 			<p class="text-secondary-600 mb-4">{new Date(frontmatter.date).toLocaleDateString('el-GR', {
@@ -24,8 +34,193 @@ const { frontmatter } = Astro.props;
 		<div class="prose prose-lg max-w-none">
 			<slot />
 		</div>
+		
+		<!-- Comments Section -->
+		<div class="mt-16 pt-8 border-t border-secondary-200">
+			<h2 class="text-2xl font-bold text-dark-900 mb-8">Comments</h2>
+			
+			<!-- Comment Form -->
+			<div class="bg-white p-6 rounded-lg shadow-md border border-secondary-100 mb-10">
+				<h3 class="text-xl font-bold mb-4 text-dark-800">Leave a Comment</h3>
+				
+				<form class="space-y-6" id="comment-form">
+					<div class="grid md:grid-cols-2 gap-6">
+						<div>
+							<label for="name" class="block text-sm font-medium text-secondary-700 mb-1">Your Name *</label>
+							<input 
+								type="text" 
+								id="name" 
+								name="name" 
+								required 
+								class="w-full px-4 py-2 border border-secondary-200 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+							/>
+						</div>
+						
+						<div>
+							<label for="email" class="block text-sm font-medium text-secondary-700 mb-1">Your Email *</label>
+							<input 
+								type="email" 
+								id="email" 
+								name="email" 
+								required 
+								class="w-full px-4 py-2 border border-secondary-200 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+							/>
+							<p class="text-xs text-secondary-500 mt-1">Your email won't be published</p>
+						</div>
+					</div>
+					
+					<div>
+						<label for="comment" class="block text-sm font-medium text-secondary-700 mb-1">Your Comment *</label>
+						<textarea 
+							id="comment" 
+							name="comment" 
+							rows="4" 
+							required 
+							class="w-full px-4 py-2 border border-secondary-200 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+						></textarea>
+					</div>
+					
+					<!-- Anti-spam honeypot field (hidden from users) -->
+					<div class="hidden">
+						<label for="website">Website (Leave this empty)</label>
+						<input type="text" id="website" name="website" autocomplete="off" tabindex="-1" />
+					</div>
+					
+					<!-- Simple math captcha -->
+					<div>
+						<label for="captcha" class="block text-sm font-medium text-secondary-700 mb-1">
+							Anti-spam: What is <span id="captcha-num1">3</span> + <span id="captcha-num2">4</span>? *
+						</label>
+						<input 
+							type="number" 
+							id="captcha" 
+							name="captcha" 
+							required 
+							class="w-full px-4 py-2 border border-secondary-200 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+						/>
+					</div>
+					
+					<div class="flex items-center">
+						<input 
+							type="checkbox" 
+							id="save-info" 
+							name="save-info" 
+							class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded"
+						/>
+						<label for="save-info" class="ml-2 block text-sm text-secondary-700">
+							Save my name and email for the next time I comment
+						</label>
+					</div>
+					
+					<button 
+						type="submit" 
+						class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
+					>
+						Post Comment
+					</button>
+				</form>
+			</div>
+			
+			<!-- Sample Comments (for demonstration) -->
+			<div class="space-y-8">
+				<div class="bg-white p-6 rounded-lg shadow-sm border border-secondary-100">
+					<div class="flex items-start space-x-4">
+						<div class="bg-primary-100 text-primary-700 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+							MK
+						</div>
+						<div class="flex-1">
+							<div class="flex justify-between items-center mb-2">
+								<h4 class="font-bold text-dark-800">Maria Konstantinidou</h4>
+								<span class="text-sm text-secondary-500">15 Ιανουαρίου, 2025</span>
+							</div>
+							<p class="text-secondary-700">Εξαιρετικό άρθρο! Μου άρεσε πολύ η ανάλυση που κάνατε. Θα ήθελα να μάθω περισσότερα για αυτό το θέμα.</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-white p-6 rounded-lg shadow-sm border border-secondary-100 ml-12">
+					<div class="flex items-start space-x-4">
+						<div class="bg-accent-100 text-accent-700 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+							AB
+						</div>
+						<div class="flex-1">
+							<div class="flex justify-between items-center mb-2">
+								<h4 class="font-bold text-dark-800">Admin</h4>
+								<span class="text-sm text-secondary-500">16 Ιανουαρίου, 2025</span>
+							</div>
+							<p class="text-secondary-700">Ευχαριστώ πολύ για το σχόλιό σας, Μαρία! Σύντομα θα δημοσιεύσουμε περισσότερα άρθρα σχετικά με αυτό το θέμα.</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="bg-white p-6 rounded-lg shadow-sm border border-secondary-100">
+					<div class="flex items-start space-x-4">
+						<div class="bg-primary-100 text-primary-700 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+							GP
+						</div>
+						<div class="flex-1">
+							<div class="flex justify-between items-center mb-2">
+								<h4 class="font-bold text-dark-800">Γιώργος Παπαδόπουλος</h4>
+								<span class="text-sm text-secondary-500">18 Ιανουαρίου, 2025</span>
+							</div>
+							<p class="text-secondary-700">Πολύ ενδιαφέρον άρθρο! Έχω μια ερώτηση σχετικά με το δεύτερο μέρος του άρθρου. Μπορείτε να εξηγήσετε περισσότερο για τις τεχνικές που αναφέρατε;</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </Layout>
+
+<script>
+	// Generate random numbers for the captcha
+	document.addEventListener('DOMContentLoaded', () => {
+		const num1 = Math.floor(Math.random() * 10) + 1;
+		const num2 = Math.floor(Math.random() * 10) + 1;
+		
+		document.getElementById('captcha-num1').textContent = num1.toString();
+		document.getElementById('captcha-num2').textContent = num2.toString();
+		
+		// Form submission handling with validation
+		const form = document.getElementById('comment-form');
+		
+		if (form) {
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				
+				// Get form values
+				const name = document.getElementById('name').value;
+				const email = document.getElementById('email').value;
+				const comment = document.getElementById('comment').value;
+				const captchaAnswer = parseInt(document.getElementById('captcha').value);
+				const honeypot = document.getElementById('website').value;
+				
+				// Validate honeypot (should be empty)
+				if (honeypot) {
+					console.log('Bot detected');
+					return;
+				}
+				
+				// Validate captcha
+				const expectedAnswer = num1 + num2;
+				if (captchaAnswer !== expectedAnswer) {
+					alert('Incorrect captcha answer. Please try again.');
+					return;
+				}
+				
+				// If we get here, the form passed anti-spam validation
+				alert('Thank you for your comment! It will be reviewed and published soon.');
+				form.reset();
+				
+				// Generate new captcha numbers
+				const newNum1 = Math.floor(Math.random() * 10) + 1;
+				const newNum2 = Math.floor(Math.random() * 10) + 1;
+				document.getElementById('captcha-num1').textContent = newNum1.toString();
+				document.getElementById('captcha-num2').textContent = newNum2.toString();
+			});
+		}
+	});
+</script>
 
 <style is:global>
 	.prose h2 {
