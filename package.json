@@ -1,18 +1,26 @@
 {
-  "name": "astro-tutorial",
+  "name": "@example/basics",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/preact": "^4.0.0",
-    "@astrojs/rss": "^4.0.10",
-    "astro": "^5.0.3",
-    "preact": "^10.25.1"
+    "@astrojs/preact": "^4.0.5",
+    "@astrojs/react": "^4.2.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "astro": "^5.3.2",
+    "preact": "^10.26.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "tailwindcss": "^3.4.1"
   }
 }

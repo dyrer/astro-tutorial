@@ -1,9 +1,36 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/Greeting';
-const pageTitle = "Home Page";
+import Layout from '../layouts/Layout.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+
+// Get all blog posts
+const posts = await Astro.glob('./blog/*.md');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+).slice(0, 3); // Get only the 3 most recent posts
 ---
-<BaseLayout pageTitle={pageTitle}>
-    <h2>My awesome blog subtitle</h2>
-    <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-</BaseLayout>
+
+<Layout title="My Astro Blog - Home">
+	<section class="bg-gradient-to-br from-primary-900 to-dark-950 text-white py-20">
+		<div class="max-w-3xl mx-auto px-4 text-center">
+			<h1 class="text-5xl font-bold mb-6">Welcome to My Blog</h1>
+			<p class="text-xl text-primary-100 mb-10">A place where I share my thoughts, ideas, and experiences.</p>
+			<a href="/blog" class="inline-block bg-accent-500 hover:bg-accent-600 text-dark-950 font-medium px-6 py-3 rounded-md transition-colors">View All Posts</a>
+		</div>
+	</section>
+
+	<section class="py-16">
+		<div class="max-w-7xl mx-auto px-4">
+			<h2 class="text-3xl font-bold text-center mb-12 text-dark-900">Recent Posts</h2>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{sortedPosts.map((post) => (
+					<BlogPostCard post={post} />
+				))}
+			</div>
+			{posts.length > 3 && (
+				<div class="mt-12 text-center">
+					<a href="/blog" class="inline-block border-2 border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white font-medium px-6 py-3 rounded-md transition-colors">View all posts</a>
+				</div>
+			)}
+		</div>
+	</section>
+</Layout>
