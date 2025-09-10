@@ -25,7 +25,7 @@ const { frontmatter } = Astro.props;
 			})}</p>
 			{frontmatter.tags && (
 				<div class="flex flex-wrap gap-2 mt-4">
-					{frontmatter.tags.map((tag) => (
+					{frontmatter.tags.map((tag: string) => (
 						<span class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm">{tag}</span>
 					))}
 				</div>
@@ -178,22 +178,36 @@ const { frontmatter } = Astro.props;
 		const num1 = Math.floor(Math.random() * 10) + 1;
 		const num2 = Math.floor(Math.random() * 10) + 1;
 		
-		document.getElementById('captcha-num1').textContent = num1.toString();
-		document.getElementById('captcha-num2').textContent = num2.toString();
+		const captchaNum1 = document.getElementById('captcha-num1');
+		const captchaNum2 = document.getElementById('captcha-num2');
+		
+		if (captchaNum1) captchaNum1.textContent = num1.toString();
+		if (captchaNum2) captchaNum2.textContent = num2.toString();
 		
 		// Form submission handling with validation
-		const form = document.getElementById('comment-form');
+		const form = document.getElementById('comment-form') as HTMLFormElement;
 		
 		if (form) {
 			form.addEventListener('submit', (e) => {
 				e.preventDefault();
 				
 				// Get form values
-				const name = document.getElementById('name').value;
-				const email = document.getElementById('email').value;
-				const comment = document.getElementById('comment').value;
-				const captchaAnswer = parseInt(document.getElementById('captcha').value);
-				const honeypot = document.getElementById('website').value;
+				const nameInput = document.getElementById('name') as HTMLInputElement;
+				const emailInput = document.getElementById('email') as HTMLInputElement;
+				const commentInput = document.getElementById('comment') as HTMLTextAreaElement;
+				const captchaInput = document.getElementById('captcha') as HTMLInputElement;
+				const honeypotInput = document.getElementById('website') as HTMLInputElement;
+				
+				if (!nameInput || !emailInput || !commentInput || !captchaInput || !honeypotInput) {
+					console.error('Form elements not found');
+					return;
+				}
+				
+				const name = nameInput.value;
+				const email = emailInput.value;
+				const comment = commentInput.value;
+				const captchaAnswer = parseInt(captchaInput.value);
+				const honeypot = honeypotInput.value;
 				
 				// Validate honeypot (should be empty)
 				if (honeypot) {
@@ -215,8 +229,10 @@ const { frontmatter } = Astro.props;
 				// Generate new captcha numbers
 				const newNum1 = Math.floor(Math.random() * 10) + 1;
 				const newNum2 = Math.floor(Math.random() * 10) + 1;
-				document.getElementById('captcha-num1').textContent = newNum1.toString();
-				document.getElementById('captcha-num2').textContent = newNum2.toString();
+				const newCaptchaNum1 = document.getElementById('captcha-num1');
+				const newCaptchaNum2 = document.getElementById('captcha-num2');
+				if (newCaptchaNum1) newCaptchaNum1.textContent = newNum1.toString();
+				if (newCaptchaNum2) newCaptchaNum2.textContent = newNum2.toString();
 			});
 		}
 	});

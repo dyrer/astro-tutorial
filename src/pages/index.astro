@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import BlogPostCard from '../components/BlogPostCard.astro';
 
-// Get all blog post
-const posts = await Astro.glob('./blog/*.md');
+// Get all blog posts
+const posts = Object.values((import.meta as any).glob('./blog/*.md', { eager: true })) as any[];
 const sortedPosts = posts.sort((a, b) => 
   new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
 ).slice(0, 6); // Get only the 3 most recent posts
