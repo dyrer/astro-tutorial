@@ -170,7 +170,7 @@ import Layout from '../layouts/Layout.astro';
 				try {
 					const formData = new FormData(form);
 					
-					const response = await fetch('/api/contact', {
+					const response = await fetch('/.netlify/functions/contact', {
 						method: 'POST',
 						body: formData
 					});
