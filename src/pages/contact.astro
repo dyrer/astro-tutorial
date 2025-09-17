@@ -168,10 +168,49 @@ import Layout from '../layouts/Layout.astro';
 				formMessage.classList.add('hidden');
 
 				try {
-					const formData = new FormData(form);
+					// Get form data
+					const name = (document.getElementById('name') as HTMLInputElement).value.trim();
+					const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+					const subject = (document.getElementById('subject') as HTMLInputElement).value.trim();
+					const message = (document.getElementById('message') as HTMLTextAreaElement).value.trim();
+					
+					// Client-side validation
+					if (!name || !email || !subject || !message) {
+						formMessage.classList.remove('hidden');
+						formMessage.className = 'mb-6 p-4 rounded-md bg-red-50 text-red-800 border border-red-200';
+						formMessage.textContent = 'Please fill in all required fields.';
+						// Reset button state
+						submitBtn.disabled = false;
+						submitText.classList.remove('hidden');
+						submitLoading.classList.add('hidden');
+						return;
+					}
+					
+					// Email validation
+					const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+					if (!emailRegex.test(email)) {
+						formMessage.classList.remove('hidden');
+						formMessage.className = 'mb-6 p-4 rounded-md bg-red-50 text-red-800 border border-red-200';
+						formMessage.textContent = 'Please enter a valid email address.';
+						// Reset button state
+						submitBtn.disabled = false;
+						submitText.classList.remove('hidden');
+						submitLoading.classList.add('hidden');
+						return;
+					}
+					
+					// Send as URL-encoded data (like a regular form submission)
+					const formData = new URLSearchParams();
+					formData.append('name', name);
+					formData.append('email', email);
+					formData.append('subject', subject);
+					formData.append('message', message);
 					
 					const response = await fetch('/.netlify/functions/contact', {
 						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
 						body: formData
 					});
 

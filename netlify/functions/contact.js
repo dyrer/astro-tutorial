@@ -35,6 +35,10 @@ exports.handler = async (event, context) => {
     const subject = formData.get('subject');
     const message = formData.get('message');
 
+    // Debug logging
+    console.log('Received form data:', { name, email, subject, message });
+    console.log('Raw body:', event.body);
+
     // Validate required fields
     if (!name || !email || !subject || !message) {
       return {
