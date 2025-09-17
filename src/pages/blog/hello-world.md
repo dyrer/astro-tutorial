@@ -11,17 +11,17 @@ image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.
 
 Καλώς ήρθατε στο δοκιμαστικό ιστολόγιο μου, στην προσπάθεια μου να μάθω το AstroJs
 
-## Why I Started This Blog
+## Σκοπός
 
 Σκοπός του ιστότοπου αυτού είναι να μάθω πως λειτουργεί το AstroJS, ως εναλλακτική πλατφόρμα για το WordPress που χρησιμοποιώ τόσα χρόνια. Φυσικά το WP, δεν πρόκειται
 να το εγκαταλείψω, αλλά και το Astro είναι ένα πάρα πολύ ενδιαφέρον λογισμικό, με απεριόριστες δυνατότητες.
 
-## What to Expect
+## Τι να περιμένετε
 
-Here's what you can expect from this blog:
+Το ιστολόγιο αυτό θα περιλαμβάνει:
 
-- **Regular posts** about topics I'm passionate about
-- **Tutorials and guides** on various technologies
+- **Άρθρα** για θέματα που με ενδιαφέρουν
+- **Μαθήματα και Οδηγοί** για διάφορες τεχνολογίες
 - **Personal reflections** on my experiences
 - **Book reviews** and recommendations
 

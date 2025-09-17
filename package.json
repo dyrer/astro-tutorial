@@ -10,7 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.7"
+    "@astrojs/node": "^9.4.3",
+    "@types/nodemailer": "^7.0.1",
+    "astro": "^5.13.7",
+    "nodemailer": "^7.0.6"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
