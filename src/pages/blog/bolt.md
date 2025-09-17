@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: Astro JS with Bolt.new
-date: 2025-01-01
-description: This a new blog made with Bolt.new.
+title: Astro JS
+date: 2025-09-01
+description: This a new blog.
 tags: ["introduction", "bolt.new"]
 ---
 
