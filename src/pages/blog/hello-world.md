@@ -9,11 +9,12 @@ image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.
 
 # Hello World!
 
-Welcome to my new blog! I'm excited to start sharing my thoughts, ideas, and experiences with you all.
+Καλώς ήρθατε στο δοκιμαστικό ιστολόγιο μου, στην προσπάθεια μου να μάθω το AstroJs
 
 ## Why I Started This Blog
 
-I've always enjoyed writing and sharing knowledge. This blog will be a place where I can document my journey, share what I learn, and hopefully help others along the way.
+Σκοπός του ιστότοπου αυτού είναι να μάθω πως λειτουργεί το AstroJS, ως εναλλακτική πλατφόρμα για το WordPress που χρησιμοποιώ τόσα χρόνια. Φυσικά το WP, δεν πρόκειται
+να το εγκαταλείψω, αλλά και το Astro είναι ένα πάρα πολύ ενδιαφέρον λογισμικό, με απεριόριστες δυνατότητες.
 
 ## What to Expect
 
