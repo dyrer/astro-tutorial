@@ -10,9 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@astrojs/node": "^9.5.1",
     "@types/nodemailer": "^7.0.1",
     "astro": "^5.16.0",
+=======
+    "@astrojs/node": "^9.4.6",
+    "@types/nodemailer": "^7.0.1",
+    "astro": "^5.14.4",
+>>>>>>> 45103709460159c65414a5ac31fa236f41ac614c
     "nodemailer": "^7.0.6"
   },
   "devDependencies": {
