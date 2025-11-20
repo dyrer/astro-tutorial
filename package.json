@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.4.3",
+    "@astrojs/node": "^9.5.1",
     "@types/nodemailer": "^7.0.1",
-    "astro": "^5.13.7",
+    "astro": "^5.16.0",
     "nodemailer": "^7.0.6"
   },
   "devDependencies": {
